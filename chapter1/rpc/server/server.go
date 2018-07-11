@@ -9,8 +9,17 @@ import (
 
 const port = 1234
 
-func main() {
+type HelloWorldRequest struct {
+	Name string `json:"name"`
+}
 
+type HelloWorldResponse struct {
+	Message string `json:"message"`
+}
+
+func main() {
+	log.Printf("Server starting on port %v\n", port)
+	StartServer()
 }
 
 func StartServer() {
@@ -31,7 +40,7 @@ func StartServer() {
 
 type HelloWorldHandler struct{}
 
-func (h HelloWorldHandler) HellWorld(args *contract.helloWorldRequest, reply *contract.helloWorldResponse) error {
+func (h HelloWorldHandler) HellWorld(args *HelloWorldRequest, reply *HelloWorldResponse) error {
 	reply.Message = "Hello" + args.Name
 	return nil
 }
