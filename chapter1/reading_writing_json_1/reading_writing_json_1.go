@@ -8,7 +8,7 @@ import (
 )
 
 type helloWorldResponse struct {
-	Message string
+	Message string `json:"message"`
 }
 
 func main() {
